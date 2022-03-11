@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carregamento Título Descrição</title>
+</head>
+<body>
+<div class="et_pb_blurb_container">
+    <div class="et_pb_blurb_description">
+        <h1>Auditoria</h1>
+        <p><span>Dashboards que mostram a auditoria completa </span></p>
+    </div>
+    <!-- .et_pb_blurb_description -->
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+<script>
+    $( document ).ready(function() {
+        var retorno = loadTituloDescricao();
+        console.log(retorno);
+
+    });
+
+    function loadTituloDescricao() {
+        var array = [];
+        var titulo = $('.et_pb_blurb_description').find('h1').html();
+        var descricao = $('.et_pb_blurb_description').find('p').children('span').html();
+
+        array.push(titulo);
+        array.push(descricao);
+
+        return array;
+
+    }
+
+</script>
+</body>
+</html>

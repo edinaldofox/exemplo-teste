@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercicios</title>
+</head>
+<body>
+<form id="formulario">
+    <label for="nome">Nome:</label<br>
+    <input type="text" id="nome" name="nome" value="Robson"><br>
+    <label for="sobreNome">Sobrenome:</label<br>
+    <input type="text" id="sobreNome" name="sobrenome" value="Silva"><br>
+
+    <input type="submit" id="formularioSubmit" value="Submit"><br>
+</form>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+
+<script>
+    $( document ).ready(function() {
+        $('#formulario').submit(function () {
+            dataSerializa = $( "#formulario" ).serialize();
+            $.ajax({
+                method: "POST",
+                url: "/teste/cliente.php",
+                data: dataSerializa,
+                dataType: "json",
+                beforeSend: function( xhr ) {
+                    if ($('#formularioSubmit').length) {
+                        $('#formularioSubmit').val("Enviando ...");
+                    }
+                }
+            })
+            .done(function( msg ) {
+                alert("Formulario enviado com sucesso!")
+                console.log( "Dados enviados para cliente.php: "+JSON.stringify(msg) );
+
+            }).fail(function() {
+                alert( "Ops, estamos com um problema ao processar o seu formulário!\nTente mais tarde!" );
+            })
+            .always(function() {
+                if ($('#formularioSubmit').length) {
+                    $('#formularioSubmit').val("Submit");
+                }
+            });
+            return false;
+        });
+    });
+
+</script>
+</body>
+</html>
